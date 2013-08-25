@@ -42,7 +42,7 @@ python-impulse: libimpulse
 	cp $(COPY_DEFAULTS) $(BUILD_DIR)/python-impulse
 	cp $(BUILD_DIR)/libimpulse/libimpulse.so $(BUILD_DIR)/python-impulse/
 	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC\
-		-I/usr/include/python2.6 -c src/impulsemodule.c -o $(BUILD_DIR)/python-impulse/impulsemodule.o
+		`python-config --includes` -c src/impulsemodule.c -o $(BUILD_DIR)/python-impulse/impulsemodule.o
 	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -L$(BUILD_DIR)/python-impulse/ $(LIBIMPULSE)\
 		$(BUILD_DIR)/python-impulse/impulsemodule.o -o $(BUILD_DIR)/python-impulse/impulse.so
 	rm $(BUILD_DIR)/python-impulse/impulsemodule.o
