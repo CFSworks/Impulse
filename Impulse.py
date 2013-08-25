@@ -233,8 +233,6 @@ def main(args):
 	except KeyboardInterrupt:
 		pass
 
-	print total_peak_heights
-
 	return True
 
 if __name__ == '__main__':
