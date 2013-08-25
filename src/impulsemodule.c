@@ -53,10 +53,10 @@ static PyMethodDef ImpulseMethods[ ] = {
 	{ NULL, NULL, 0, NULL }		/* Sentinel */
 };
 
-PyMODINIT_FUNC initimpulse ( void ) {
+PyMODINIT_FUNC initcimpulse ( void ) {
 	PyObject *m;
 
-	m = Py_InitModule( "impulse", ImpulseMethods );
+	m = Py_InitModule( "cimpulse", ImpulseMethods );
 	if (m == NULL)
 		return;
 

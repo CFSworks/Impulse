@@ -10,14 +10,14 @@ impulse: libimpulse python-impulse
 	cp $(COPY_DEFAULTS) $(BUILD_DIR)/impulse
 	cp Impulse.py $(BUILD_DIR)/impulse
 	cp $(BUILD_DIR)/libimpulse/libimpulse.so $(BUILD_DIR)/impulse/
-	cp $(BUILD_DIR)/python-impulse/impulse.so $(BUILD_DIR)/impulse/
+	cp $(BUILD_DIR)/python-impulse/cimpulse.so $(BUILD_DIR)/impulse/
 
 impulse-screenlet: libimpulse python-impulse
 	mkdir -p $(BUILD_DIR)/screenlet
 	cp $(COPY_DEFAULTS) $(BUILD_DIR)/screenlet
 	cp -R screenlet/* $(BUILD_DIR)/screenlet
 	cp $(BUILD_DIR)/libimpulse/libimpulse.so $(BUILD_DIR)/screenlet/
-	cp $(BUILD_DIR)/python-impulse/impulse.so $(BUILD_DIR)/screenlet/
+	cp $(BUILD_DIR)/python-impulse/cimpulse.so $(BUILD_DIR)/screenlet/
 
 test-libimpulse: libimpulse
 	mkdir -p $(BUILD_DIR)/test-libimpulse
@@ -44,7 +44,7 @@ python-impulse: libimpulse
 	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC\
 		`python-config --includes` -c src/impulsemodule.c -o $(BUILD_DIR)/python-impulse/impulsemodule.o
 	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -L$(BUILD_DIR)/python-impulse/ $(LIBIMPULSE)\
-		$(BUILD_DIR)/python-impulse/impulsemodule.o -o $(BUILD_DIR)/python-impulse/impulse.so
+		$(BUILD_DIR)/python-impulse/impulsemodule.o -o $(BUILD_DIR)/python-impulse/cimpulse.so
 	rm $(BUILD_DIR)/python-impulse/impulsemodule.o
 
 clean:
